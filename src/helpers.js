@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   function parseAngleAsDegrees (angle) {
     var angleUnitArray = /(deg|grad|rad|turn)$/.exec(angle);
     if (angleUnitArray === null) {

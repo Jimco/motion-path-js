@@ -1,7 +1,8 @@
-/* global WebAnimationsPolyfillExtension internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   WebAnimationsPolyfillExtension.register({
     name: 'transforms',
     properties: {

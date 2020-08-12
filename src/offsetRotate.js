@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   function offsetRotateParse (input) {
     // https://drafts.fxtf.org/motion-1/#offset-rotate-property
 

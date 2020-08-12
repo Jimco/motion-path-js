@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   function convertTranslate (input) {
     var valuesArray = internalScope.translateParse(input);
 
@@ -109,7 +110,7 @@
     var currentOffsetDistance = getPathStringOffsetDistance(offsetPath, pathElement, offsetDistance);
     var currentPoint = pathElement.getPointAtLength(currentOffsetDistance);
 
-    var epsilon = 0.0001; // Arbitrary small number to find the direction at this point in the path.
+    var epsilon = 0.009; // Arbitrary small number to find the direction at this point in the path.
     var rotateFlip = false;
     var nextPoint = pathElement.getPointAtLength(currentOffsetDistance + epsilon);
 
@@ -399,8 +400,8 @@
     var transformOriginX = positionAnchor.transformOriginX;
     var transformOriginY = positionAnchor.transformOriginY;
     var transform = 'translate3d(' +
-        (pathTransform.deltaX + positionAnchor.deltaX) + 'px, ' +
-        (pathTransform.deltaY + positionAnchor.deltaY) + 'px, 0px)';
+        (pathTransform.deltaX + positionAnchor.deltaX - anchorX) + 'px, ' +
+        (pathTransform.deltaY + positionAnchor.deltaY - anchorY) + 'px, 0px)';
 
     if (path !== undefined) {
       if (rotation !== undefined && rotation !== 0) {
@@ -412,11 +413,13 @@
           var afterShiftY = (-1) * beforeShiftY;
           var afterShiftStr = 'translate3d(' + afterShiftX + 'px, ' + afterShiftY + 'px, 0px)';
           transform += ' ' + beforeShiftStr + ' rotate(' + rotation + 'deg) ' + afterShiftStr;
+
           return transform;
         }
         transform += ' rotate(' + rotation + 'deg)';
       }
     }
+
     return transform;
   }
 

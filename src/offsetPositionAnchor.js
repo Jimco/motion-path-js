@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   /* spec for the offset-anchor property:
      https://drafts.fxtf.org/motion-1/#offset-anchor-property
 

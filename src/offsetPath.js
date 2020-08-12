@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   function basicShapePolygonParse (input, element) {
     // TODO: Support the fill-rule option and %
     var argumentList = input.split(',');

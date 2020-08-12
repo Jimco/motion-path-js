@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   var isNumeric = internalScope.isNumeric;
 
   function offsetDistanceParse (input) {

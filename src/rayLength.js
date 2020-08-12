@@ -1,7 +1,8 @@
-/* global internalScope */
 'use strict';
 
 (function () {
+  window.internalScope = window.internalScope || {};
+
   function hypotenuseLength (a, b) {
     return Math.sqrt(a * a + b * b);
   }
