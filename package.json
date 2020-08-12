@@ -1,6 +1,6 @@
 {
   "name": "motion-path-polyfill",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Web Animations polyfill extension for motion path animation",
   "main": "motion-path-polyfill.min.js",
   "files": [
