@@ -47,7 +47,7 @@
     }
 
     if (offsetPath.type === 'path') {
-      return convertPathString(properties);
+      return convertPathString(properties, positionAnchor);
     }
 
     if (offsetPath.type === 'ray') {
@@ -97,7 +97,7 @@
     return Math.round(number * 100) / 100;
   }
 
-  function convertPathString (properties) {
+  function convertPathString(properties, positionAnchor) {
     var offsetPath = internalScope.offsetPathParse(properties['offsetPath']);
 
     var offsetDistance = internalScope.offsetDistanceParse(properties['offsetDistance']);
@@ -132,7 +132,11 @@
       rotation += 180;
     }
 
-    return {deltaX: roundToHundredth(currentPoint.x), deltaY: roundToHundredth(currentPoint.y), rotation: roundToHundredth(rotation)};
+    return {
+      deltaX: roundToHundredth(currentPoint.x - positionAnchor.anchorX),
+      deltaY: roundToHundredth(currentPoint.y - positionAnchor.anchorY),
+      rotation: roundToHundredth(rotation)
+    };
   }
 
   function getContainedOffsetDistanceLength (offsetDistanceLength, properties, positionAnchor, rayLength) {
@@ -400,8 +404,8 @@
     var transformOriginX = positionAnchor.transformOriginX;
     var transformOriginY = positionAnchor.transformOriginY;
     var transform = 'translate3d(' +
-        (pathTransform.deltaX + positionAnchor.deltaX - anchorX) + 'px, ' +
-        (pathTransform.deltaY + positionAnchor.deltaY - anchorY) + 'px, 0px)';
+        (pathTransform.deltaX + positionAnchor.deltaX) + 'px, ' +
+        (pathTransform.deltaY + positionAnchor.deltaY) + 'px, 0px)';
 
     if (path !== undefined) {
       if (rotation !== undefined && rotation !== 0) {
