@@ -1,8 +1,13 @@
 {
-  "name": "motion-path-js",
-  "version": "0.0.0",
+  "name": "motion-path-polyfill",
+  "version": "0.1.0",
   "description": "Web Animations polyfill extension for motion path animation",
-  "main": "index.js",
+  "main": "motion-path-polyfill.min.js",
+  "files": [
+    "src/*",
+    "*.min.js",
+    "*.min.js.map"
+  ],
   "scripts": {
     "test": "npm run lint && karma start --single-run && npm run build",
     "watchTests": "karma start --reporters nyan",
