@@ -132,6 +132,11 @@
       rotation += 180;
     }
 
+    // if parent is `dispaly: none;` then offsetParent & positionAnchor is null
+    if (!positionAnchor) {
+      positionAnchor = { anchorX: 0, anchorY: 0 };
+    }
+
     return {
       deltaX: roundToHundredth(currentPoint.x - positionAnchor.anchorX),
       deltaY: roundToHundredth(currentPoint.y - positionAnchor.anchorY),
